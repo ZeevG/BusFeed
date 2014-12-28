@@ -15,19 +15,19 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'uiGmapgoogle-maps'
   ])
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
+        templateUrl: 'views/main.html'
       });
-  });
+  })
+  .config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {
+    GoogleMapApi.configure({
+      key: 'AIzaSyCcF6B47_VLar_L3YSHO3vFVlVxJA3HLP8',
+      v: '3.17',
+      libraries: 'weather,geometry,visualization'
+    });
+  }]);
