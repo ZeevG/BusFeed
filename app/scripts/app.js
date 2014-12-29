@@ -10,6 +10,7 @@
  */
 angular
   .module('busFeedApp', [
+    'busFeedApp.filters',
     'ngAnimate',
     'ngCookies',
     'ngResource',
