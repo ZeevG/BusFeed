@@ -21,12 +21,14 @@ angular.module('busFeedApp')
         destination: 'Forrest Place, Perth',
         travelMode: maps.TravelMode.TRANSIT,
         // departureTime: '1419431153',
+        provideRouteAlternatives: true,
       };
 
       var result = directions.route(args, function(directions, DirectionsStatus) {
         console.log(directions);
         console.log(DirectionsStatus);
-        $scope.routes[0] = directions.routes[0];
+        $scope.routes = directions.routes;
+        $scope.query = args;
       });
 
       console.log(args);
