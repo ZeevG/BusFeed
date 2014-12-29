@@ -9,12 +9,19 @@
  */
 
 angular.module('busFeedApp')
-  .controller('MainCtrl', ['$scope', 'uiGmapGoogleMapApi', function ($scope, GoogleMapApi) {
-    $scope.test = 'skdlfj';
+  .controller('MainCtrl', ['$scope', '$rootScope', '$timeout', 'uiGmapGoogleMapApi',
+  function ($scope, $rootScope, $timeout, GoogleMapApi) {
+
     $scope.routes = [];
 
-    GoogleMapApi.then(function(maps) {
+    function getRoutes(maps){
       var directions = new maps.DirectionsService();
+
+      var callback = function(directions, DirectionsStatus) {
+        console.log(directions);
+        console.log(DirectionsStatus);
+        $scope.routes = directions.routes;
+      };
 
       var args = {
         origin: '-31.9705868,115.8149134',
@@ -23,16 +30,30 @@ angular.module('busFeedApp')
         // departureTime: '1419431153',
         provideRouteAlternatives: true,
       };
-
-      var result = directions.route(args, function(directions, DirectionsStatus) {
-        console.log(directions);
-        console.log(DirectionsStatus);
-        $scope.routes = directions.routes;
-        $scope.query = args;
-      });
-
+      $scope.query = args;
       console.log(args);
-      console.log(result);
+
+      directions.route(args, callback);
+
+    }
+
+    function refreshRoutes(maps){
+      getRoutes(maps);
+      $timeout(function(){
+        refreshRoutes(maps);
+      }, 
+      30000);
+    }
+
+    GoogleMapApi.then(function(maps) {
+
+      getRoutes(maps);
+      $timeout(function(){
+        refreshRoutes(maps);
+      }, 
+      30000);
+      
     });
+
 
   }]);
