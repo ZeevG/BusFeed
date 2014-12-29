@@ -4,10 +4,11 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -22,14 +23,14 @@
     <!-- Add your site or application content here -->
     <div class="container">
       <div class="header">
-          <!--<ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#">Contact</a></li>
-        </ul> -->
-        <h3 class="text-muted" ng-controller='TimeCtrl'>
-          BusFeed - {{ clock | date:'hh:mm:ss'}}
-        </h3>
+        <div class="row text-muted" ng-controller='TimeCtrl'>
+          <div class="col-md-4 col-xs-4">
+            <h1>BusFeed</h1>
+          </div>
+          <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-4">
+            <h1 class="align-right">{{ clock | date:'hh:mm:ss'}}</h1>
+          </div>
+        </div>
       </div>
 
       <div ng-view=""></div>
@@ -87,6 +88,7 @@
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/filters/filters.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/clock.js"></script>
     <!-- endbuild -->

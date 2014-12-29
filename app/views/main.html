@@ -1,16 +1,36 @@
-<h4>Routes</h4>
 <div ng-controller="MainCtrl">
-  <p ng-model="test"></p>
-  <div class="row" ng-repeat="route in routes">
-    
-    <div class="col-md-9">
-      <div class="row" ng-repeat="leg in route.legs">
-        <p>From: {{leg.start_address}} <b>{{leg.departure_time.text}}</b></p>
-        <p>To: {{leg.end_address}} <b>{{leg.arrival_time.text}}</b></p>
+  <div class="query-details row">
+    <div class="col-md-12 col-xs-12">
+      <div class="origin">
+        {{query.origin}}
+      </div>
+      <div class="arrows">
+        <i class="fa fa-chevron-down"></i>
+      </div>
+      <div class="destination">
+        {{query.destination}}
+      </div>
+    </div>
+  </div>
 
-        <div class="row" ng-repeat="step in leg.steps">
-          <p class="col-md-6 col-md-offset-1">{{$index+1}}. {{step.transit.line.short_name}} {{step.instructions}}</p>
+
+
+  <div class="route-card" ng-repeat="route in routes">
+    <div ng-repeat="leg in route.legs">
+      <div class="row times">
+        <div class="col-md-7 col-xs-8 col-md-offset-1">
+          <h4>{{leg.departure_time.text}} - {{leg.arrival_time.text}}</h4>
         </div>
+        <div class="col-md-3 col-xs-4">
+          <h4 class="align-right">{{leg.duration.text}}</h4>
+        </div>
+      </div>
+      <div class="row icon-steps">
+        <div class="col-md-10 col-md-offset-1" ng-bind-html="leg.steps | iconise_steps">
+        </div>
+      </div>
+      <div class="row route-steps" ng-repeat="step in leg.steps">
+        <div class="route-step col-md-10 col-md-offset-1">{{$index+1}}. {{step.instructions}}</div>
       </div>
     </div>
   </div>
