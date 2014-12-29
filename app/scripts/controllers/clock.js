@@ -1,12 +1,12 @@
 'use strict';
 
 var app = angular.module('busFeedApp');
-app.controller('TimeCtrl', ['$scope', '$timeout', function ($scope, $timeout) {
-        $scope.clock = 'Time...';
+app.controller('TimeCtrl', ['$scope', '$rootScope', '$timeout', function ($scope, $rootScope, $timeout) {
+        $rootScope.clock = 'Time...';
         $scope.tickInterval = 1000;
 
         var tick = function() {
-            $scope.clock = Date.now();
+            $rootScope.clock = Date.now();
             $timeout(tick, $scope.tickInterval);
         };
 

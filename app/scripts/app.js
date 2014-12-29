@@ -17,7 +17,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'uiGmapgoogle-maps'
+    'uiGmapgoogle-maps',
+    'angularMoment'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -31,4 +32,8 @@ angular
       v: '3.17',
       libraries: 'weather,geometry,visualization'
     });
-  }]);
+  }])
+  .constant('angularMomentConfig', {
+    preprocess: 'unix', // optional
+    timezone: 'Europe/London' // optional
+  });

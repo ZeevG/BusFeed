@@ -1,9 +1,11 @@
+<span class="visible-xs">SIZE XS</span><span class="visible-sm">SIZE SM</span><span class="visible-md">SIZE MD</span><span class="visible-lg">SIZE LG</span>
+
 <div class="header">
   <div class="row text-muted" ng-controller='TimeCtrl'>
-    <div class="col-md-4 col-xs-4">
+    <div class="col-sm-4 col-xs-4">
       <h2>BusFeed</h2>
     </div>
-    <div class="col-md-4 col-md-offset-4 col-xs-4 col-xs-offset-2">
+    <div class="col-sm-4 col-sm-offset-4 col-xs-4 col-xs-offset-2">
       <h2 class="align-right">{{ clock | date:'hh:mm:ss'}}</h2>
     </div>
   </div>
@@ -12,7 +14,7 @@
 
 <div ng-controller="MainCtrl">
   <div class="query-details row">
-    <div class="col-md-12 col-xs-12">
+    <div class="col-sm-12 col-xs-12">
       <div class="origin">
         {{query.origin}}
       </div>
@@ -26,23 +28,32 @@
   </div>
 
 
-
   <div class="route-card" ng-repeat="route in routes">
     <div ng-repeat="leg in route.legs">
       <div class="row times">
-        <div class="col-md-7 col-xs-8 col-md-offset-1">
+        <div class="col-sm-8 col-xs-8 col-sm-offset-1">
           <h4>{{leg.departure_time.text}} - {{leg.arrival_time.text}}</h4>
         </div>
-        <div class="col-md-3 col-xs-4">
+        <div class="col-sm-2 col-xs-4">
           <h4 class="align-right">{{leg.duration.text}}</h4>
         </div>
       </div>
-      <div class="row icon-steps">
-        <div class="col-md-10 col-md-offset-1" ng-bind-html="leg.steps | iconise_steps">
+      <div class="row">
+        <div class="col-xs-8 col-sm-6 col-sm-offset-1 icon-steps" ng-bind-html="leg.steps | iconise_steps">
+        </div>
+        <div class="col-xs-4 col-sm-4 arrival-mins">
+          <h4 class="align-right">
+            <span class="future" ng-if="leg.departure_time.value.getTime() > clock">Leaves
+              <span class="align-right" am-time-ago="leg.departure_time.value.getTime()/1000"></span>
+            </span>
+            <span class="past" ng-if="leg.departure_time.value.getTime() < clock">Left
+              <span class="align-right" am-time-ago="leg.departure_time.value.getTime()/1000"></span>
+            </span>
+          </h4>
         </div>
       </div>
       <div class="row route-steps" ng-repeat="step in leg.steps">
-        <div class="route-step col-md-10 col-md-offset-1">{{$index+1}}. {{step.instructions}}</div>
+        <div class="route-step col-sm-10 col-sm-offset-1">{{$index+1}}. {{step.instructions}}</div>
       </div>
     </div>
   </div>
