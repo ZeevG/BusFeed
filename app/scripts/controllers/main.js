@@ -9,50 +9,68 @@
  */
 
 angular.module('busFeedApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$timeout', 'uiGmapGoogleMapApi',
-  function ($scope, $rootScope, $timeout, GoogleMapApi) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'uiGmapGoogleMapApi',
+  function ($scope, $rootScope, $routeParams, $timeout, GoogleMapApi) {
 
     $scope.routes = [];
+
+    // Time interval in miliseconds between polls
+    var refreshInterval = 30000;
+
+    // Default settings for directions request
+    var args = {
+      destination: 'Forrest Place, Perth',
+      travelMode: 'TRANSIT',
+      provideRouteAlternatives: true,
+    };
+
+    // If origin/destination is supplied in $routeParams
+    angular.extend(args, $routeParams);
 
     function getRoutes(maps){
       var directions = new maps.DirectionsService();
 
-      var callback = function(directions, DirectionsStatus) {
-        console.log(directions);
-        console.log(DirectionsStatus);
-        $scope.routes = directions.routes;
-      };
+      // If still no origin, try to use HTML5 Geolocation
+      if(!('origin' in args) && (navigator.geolocation)){
+        console.log('geolocation OK');
+        var geocoder = new maps.Geocoder();
 
-      var args = {
-        origin: '-31.9705868,115.8149134',
-        destination: 'Forrest Place, Perth',
-        travelMode: maps.TravelMode.TRANSIT,
-        // departureTime: '1419431153',
-        provideRouteAlternatives: true,
-      };
-      $scope.query = args;
-      console.log(args);
+        navigator.geolocation.getCurrentPosition(function(position){
+          var latLng = new maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          );
 
-      directions.route(args, callback);
+          geocoder.geocode({'latLng': latLng}, function(results, status) {
+            console.log('Reverse Geocoder', status);
 
+            args.origin = results[0].formatted_address;
+            $scope.query = args;
+
+            directions.route(args, function(directions, DirectionsStatus) {
+              console.log(DirectionsStatus);
+              $scope.routes = directions.routes;
+            });
+          });
+        });
+
+      }else{
+        $scope.query = args;
+
+        directions.route(args, function(directions, DirectionsStatus) {
+          console.log(DirectionsStatus);
+          $scope.routes = directions.routes;
+        });
+      }
     }
 
     function refreshRoutes(maps){
       getRoutes(maps);
-      $timeout(function(){
-        refreshRoutes(maps);
-      }, 
-      30000);
+      $timeout(function(){refreshRoutes(maps);}, refreshInterval);
     }
 
     GoogleMapApi.then(function(maps) {
-
-      getRoutes(maps);
-      $timeout(function(){
-        refreshRoutes(maps);
-      }, 
-      30000);
-      
+      refreshRoutes(maps);
     });
 
 
