@@ -48,7 +48,12 @@ angular.module('busFeedApp')
             $scope.query = args;
 
             directions.route(args, function(directions, DirectionsStatus) {
+              var MD5 = new Hashes.MD5();
+
               console.log(DirectionsStatus);
+              for(var ii=0;ii<directions.routes.length;ii++){
+                directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
+              }
               $scope.routes = directions.routes;
             });
           });
@@ -58,7 +63,12 @@ angular.module('busFeedApp')
         $scope.query = args;
 
         directions.route(args, function(directions, DirectionsStatus) {
+          var MD5 = new Hashes.MD5();
+
           console.log(DirectionsStatus);
+          for(var ii=0;ii<directions.routes.length;ii++){
+            directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
+          }
           $scope.routes = directions.routes;
         });
       }

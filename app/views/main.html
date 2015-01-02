@@ -28,7 +28,7 @@
   </div>
 
 
-  <div class="route-card" ng-repeat="route in routes">
+  <div class="route-card" ng-repeat="route in routes track by route.md5">
     <div ng-repeat="leg in route.legs">
       <div class="row times">
         <div class="col-sm-8 col-xs-8 col-sm-offset-1">
