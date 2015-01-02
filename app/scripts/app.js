@@ -22,11 +22,11 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/:origin?/:destination/', {
-        templateUrl: 'views/main.html'
+      .when('/feed/', {
+        templateUrl: 'views/feed.html'
       })
       .when('/', {
-        templateUrl: 'views/main.html'
+        templateUrl: 'views/querybuilder.html'
       });
   })
   .config(['uiGmapGoogleMapApiProvider', function (GoogleMapApi) {

@@ -15,11 +15,10 @@ angular.module('busFeedApp')
     $scope.routes = [];
 
     // Time interval in miliseconds between polls
-    var refreshInterval = 30000;
+    var refreshInterval = 120000;
 
     // Default settings for directions request
     var args = {
-      destination: 'Forrest Place, Perth',
       travelMode: 'TRANSIT',
       provideRouteAlternatives: true,
     };
@@ -31,7 +30,7 @@ angular.module('busFeedApp')
       var directions = new maps.DirectionsService();
 
       // If still no origin, try to use HTML5 Geolocation
-      if(!('origin' in args) && (navigator.geolocation)){
+      if((!('origin' in args) || args.origin === 'My Location') && (navigator.geolocation)){
         console.log('geolocation OK');
         var geocoder = new maps.Geocoder();
 
