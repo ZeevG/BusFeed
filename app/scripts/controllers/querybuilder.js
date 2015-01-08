@@ -8,18 +8,16 @@
  * Controller of the busFeedApp
  */
 angular.module('busFeedApp')
-  .controller('QuerybuilderCtrl', ['$scope', '$location', '$controller',
-    function ($scope, $location, $controller) {
+  .controller('QuerybuilderCtrl', ['$scope', '$rootScope', '$location', '$controller',
+    function ($scope, $rootScope, $location, $controller) {
     $controller('OverlayCtrl', {$scope:$scope});
 
     $scope.origin = 'My Location';
 
     $scope.go = function(){
-        $location.path('/feed/').search(
-            {
-                origin: $scope.origin,
-                destination: $scope.destination
-            }
-        );
+
+      var routeObj = {origin: $scope.origin, destination: $scope.destination};
+
+      $location.path('/feed/').search(routeObj);
     };
   }]);

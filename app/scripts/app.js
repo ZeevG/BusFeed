@@ -44,6 +44,9 @@ angular
     preprocess: 'unix', // optional
     timezone: 'Europe/London' // optional
   })
+  .run(['queryHistoryService', function(queryHistoryService){
+    queryHistoryService.restoreState();
+  }])
   // Quick inheritable "Super-controller" for use by concrete controllers
   .controller('OverlayCtrl', function($scope){
     $scope.$watch('$viewContentLoaded', function(){

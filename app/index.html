@@ -30,9 +30,12 @@
 
     <snap-drawer>
       <div ng-controller="RecentQueriesCtrl">
-        <p ng-bind="test"></p>
+        <a ng-href="#/" class="new-route-button">
+          <i class="fa fa-plus"></i>
+          Create A New Route
+        </a>
+        <div ng-include="'views/recentqueries.html'" ng-repeat="route in queryHistory.queries"></div>
       </div>
-      <p>Hello from drawer!</p>
     </snap-drawer>
     <snap-content>
       <i class="fa fa-bars fa-2x" snap-toggle></i>
@@ -93,6 +96,7 @@
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/filters/filters.js"></script>
+    <script src="scripts/services/queryhistoryservice.js"></script>
     <script src="scripts/controllers/feed.js"></script>
     <script src="scripts/controllers/clock.js"></script>
     <script src="scripts/controllers/querybuilder.js"></script>

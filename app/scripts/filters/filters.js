@@ -23,4 +23,7 @@ angular.module('busFeedApp.filters', [])
       });
       return icons.join(iconSeperator);
     };
+  })
+  .filter('encodeURIComponent', function() {
+    return window.encodeURIComponent;
   });

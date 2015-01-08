@@ -9,8 +9,8 @@
  */
 
 angular.module('busFeedApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'uiGmapGoogleMapApi', '$controller',
-  function ($scope, $rootScope, $routeParams, $timeout, GoogleMapApi, $controller) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'uiGmapGoogleMapApi', '$controller', 'queryHistoryService',
+  function ($scope, $rootScope, $routeParams, $timeout, GoogleMapApi, $controller, queryHistoryService) {
     $controller('OverlayCtrl', {$scope:$scope});
 
     $scope.routes = [];
@@ -47,6 +47,8 @@ angular.module('busFeedApp')
             args.origin = results[0].formatted_address;
             $scope.query = args;
 
+            queryHistoryService.newQuery($scope.query);
+
             directions.route(args, function(directions, DirectionsStatus) {
               var MD5 = new Hashes.MD5();
 
@@ -61,6 +63,8 @@ angular.module('busFeedApp')
 
       }else{
         $scope.query = args;
+
+        queryHistoryService.newQuery($scope.query);
 
         directions.route(args, function(directions, DirectionsStatus) {
           var MD5 = new Hashes.MD5();

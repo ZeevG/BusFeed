@@ -8,6 +8,6 @@
  * Controller of the busFeedApp
  */
 angular.module('busFeedApp')
-  .controller('RecentQueriesCtrl', ['$scope', function ($scope) {
-    $scope.test = 'Testing';
+  .controller('RecentQueriesCtrl', ['$scope', 'queryHistoryService', function ($scope, queryHistoryService) {
+    $scope.queryHistory = queryHistoryService;
   }]);
