@@ -18,7 +18,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'uiGmapgoogle-maps',
-    'angularMoment'
+    'angularMoment',
+    'snap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -36,7 +37,21 @@ angular
       libraries: 'weather,geometry,visualization'
     });
   }])
+  .config(function(snapRemoteProvider) {
+    snapRemoteProvider.globalOptions.disable = 'right';
+  })
   .constant('angularMomentConfig', {
     preprocess: 'unix', // optional
     timezone: 'Europe/London' // optional
+  })
+  // Quick inheritable "Super-controller" for use by concrete controllers
+  .controller('OverlayCtrl', function($scope){
+    $scope.$watch('$viewContentLoaded', function(){
+      console.log('viewContentLoaded');
+      angular.element('#overlay').on('animationend animationend webkitAnimationEnd oanimationend MSAnimationEnd', function(event){
+        this.remove();
+      })
+      angular.element('#overlay').addClass('out');
+    });
   });
+

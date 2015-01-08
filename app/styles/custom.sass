@@ -14,6 +14,36 @@ $superTinyScreen: 350px
 body
     background-color: #eee
 
+#overlay
+    z-index: 100
+    background-color: white
+    width: 100%
+    height: 100%
+    position: absolute
+    top: 0px
+    left: 0px
+
+    &.out
+        animation: fadeOut 1s
+
+    &.removed
+        display: none
+
+    .loading-text
+        text-align: center
+        margin-top: 10%
+
+.snap-content
+    background-color: #EEEEEE
+    
+    .fa-bars
+        margin: 5px
+        margin-left: 10px
+        cursor: pointer
+
+.snap-drawer
+    background-color: #FFFFFF
+
 .header
     font-size: 22px
     font-weight: 200

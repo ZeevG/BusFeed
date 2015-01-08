@@ -9,8 +9,9 @@
  */
 
 angular.module('busFeedApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'uiGmapGoogleMapApi',
-  function ($scope, $rootScope, $routeParams, $timeout, GoogleMapApi) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$routeParams', '$timeout', 'uiGmapGoogleMapApi', '$controller',
+  function ($scope, $rootScope, $routeParams, $timeout, GoogleMapApi, $controller) {
+    $controller('OverlayCtrl', {$scope:$scope});
 
     $scope.routes = [];
 
