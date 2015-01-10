@@ -29,59 +29,23 @@ angular.module('busFeedApp')
 
     function getRoutes(maps){
       var directions = new maps.DirectionsService();
+      $scope.query = args;
 
-      // If still no origin, try to use HTML5 Geolocation
-      if((!('origin' in args) || args.origin === 'My Location') && (navigator.geolocation)){
-        console.log('geolocation OK');
-        var geocoder = new maps.Geocoder();
-
-        navigator.geolocation.getCurrentPosition(function(position){
-          var latLng = new maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          );
-
-          geocoder.geocode({'latLng': latLng}, function(results, status) {
-            console.log('Reverse Geocoder', status);
-
-            args.origin = _.map(
-              results[0].address_components.slice(0, 3),
-              function(component){
-                return component.short_name;
-              }
-            ).join(' ');
-
-            $scope.query = args;
-
-            queryHistoryService.newQuery($scope.query);
-
-            directions.route(args, function(directions, DirectionsStatus) {
-              var MD5 = new Hashes.MD5();
-
-              console.log(DirectionsStatus);
-              for(var ii=0;ii<directions.routes.length;ii++){
-                directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
-              }
-              $scope.routes = directions.routes;
-            });
-          });
-        });
-
-      }else{
-        $scope.query = args;
-
+      directions.route(args, function(directions, DirectionsStatus) {
+        var MD5 = new Hashes.MD5();
+        
+        // Query returned something - Add it to the history service
         queryHistoryService.newQuery($scope.query);
 
-        directions.route(args, function(directions, DirectionsStatus) {
-          var MD5 = new Hashes.MD5();
+        console.log(DirectionsStatus);
+        for(var ii=0;ii<directions.routes.length;ii++){
+          directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
+        }
 
-          console.log(DirectionsStatus);
-          for(var ii=0;ii<directions.routes.length;ii++){
-            directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
-          }
+        $scope.$apply(function(){
           $scope.routes = directions.routes;
         });
-      }
+      });
     }
 
     function refreshRoutes(maps){
