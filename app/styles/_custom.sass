@@ -1,16 +1,5 @@
 $superTinyScreen: 350px
 
-@mixin shadow
-    box-shadow: 1px 3px rgba( 0, 0, 0, 0.1 )
-
-@mixin nice-h4($big: 22px, $small: 19px)
-    font-size: $big
-    font-weight: 200
-    line-height: 1.8
-    @media screen and (max-width: $superTinyScreen)
-        font-size: $small
-        font-weight: 300
-
 body
     background-color: #eee
 
@@ -29,9 +18,12 @@ body
     &.removed
         display: none
 
-    .loading-text
+    .rotating-icon
+        @include rotating-icon
         text-align: center
-        margin-top: 10%
+        position: relative
+        display: block
+        top: 100px
 
 .snap-content
     background-color: #EEEEEE
@@ -42,7 +34,7 @@ body
         cursor: pointer
 
 .snap-drawer
-    background-color: #FFFFFF
+    background-color: #333333
 
 .header
     font-size: 22px
@@ -127,39 +119,39 @@ body
 .align-right
     text-align: right
 
-.query-builder
-    text-align: center
-    background-color: #3768FB
-    color: #FBFBFB
-    font-size: 24px
-    font-weight: 300
-    line-height: 1.8
-    padding-top: 20px
-    padding-bottom: 20px
-    @include shadow
-    
-    .form-element
-        padding: 10px
-        color: #3768FB
-
 .recent-query, .new-route-button
     cursor: pointer
     display: block
-    color: black
+    color: #EEEEEE !important
     padding: 10px
     padding-left: 20px
     text-decoration: none
+    border-bottom: 1px solid #999999
 
     .from, .to
-        color: #222
+        color: #666
+        width: 3em
+
+    .origin, .destination
+        margin-left: 40px
 
     &:hover, &:visited, &:link, &:active
         text-decoration: none
     
-    &:hover
+    &:hover, &:active
         background-color: #DDD
+        color: #333 !important
 
 .new-route-button
     text-align: center
     padding: 30px
     font-size: 1.2em
+
+i.fa.rotate
+    @include rotating-icon
+
+i.hamburger
+    position: relative
+    top: 5px
+    @media screen and (max-width: 767px)
+        position: absolute

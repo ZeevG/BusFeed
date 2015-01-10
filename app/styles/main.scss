@@ -3,7 +3,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "bootstrap-sass-official/assets/stylesheets/_bootstrap.scss";
 // endbower
 
-@import "custom.sass";
+@import "mixins";
+@import "custom";
+@import "querybuilder";
 
 .browsehappy {
   margin: 0.2em 0;

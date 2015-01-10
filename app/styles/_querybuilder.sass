@@ -1,0 +1,60 @@
+.query-builder
+    text-align: center
+    background-color: #FFFFFF
+    color: grey
+    font-size: 24px
+    font-weight: 300
+    line-height: 1.8
+    padding-top: 20px
+    padding-bottom: 20px
+    margin-left: -15px
+    margin-right: -15px
+    @include shadow
+    
+    .form-element
+        padding: 10px
+        margin: 10px
+        width: 100%
+
+        &:focus
+            outline: none
+
+input.form-element
+    border: 1px solid #CDCDCD
+
+    &.origin
+        padding-right: 35px
+
+.location-button
+    cursor: pointer
+    padding: 10px 10px 10px 10px
+    height: 65px
+    width: 100%
+    position: relative
+    top: 20px
+    right: 55px
+    
+    @media screen and (max-width: 765px)
+        border: none
+        padding: 10px
+        margin: 10px
+
+
+    &:hover
+        .fa-location-arrow
+            color: #0077FF
+            font-size: 26px
+            text-shadow: 1px 1px 1px #ccc
+
+
+    .fa-refresh
+        @include rotating-icon(1000ms)
+
+    .fa-location-arrow
+        vertical-align: middle
+        transition: font-size .2s linear, color .2s linear, text-shadow .2s linear
+
+.go
+    background-color: #3768FB
+    color: #FBFBFB
+    border: none

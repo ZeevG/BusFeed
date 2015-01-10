@@ -1,0 +1,55 @@
+
+@mixin shadow
+  box-shadow: 1px 3px rgba( 0, 0, 0, 0.1 )
+
+@mixin nice-h4($big: 22px, $small: 19px)
+  font-size: $big
+  font-weight: 200
+  line-height: 1.8
+  @media screen and (max-width: $superTinyScreen)
+    font-size: $small
+    font-weight: 300
+
+@mixin rotating-icon($speed: 4000ms)
+  -webkit-animation-name: spin
+  -webkit-animation-duration: $speed
+  -webkit-animation-iteration-count: infinite
+  -webkit-animation-timing-function: linear
+  -moz-animation-name: spin
+  -moz-animation-duration: $speed
+  -moz-animation-iteration-count: infinite
+  -moz-animation-timing-function: linear
+  -ms-animation-name: spin
+  -ms-animation-duration: $speed
+  -ms-animation-iteration-count: infinite
+  -ms-animation-timing-function: linear
+  animation-name: spin
+  animation-duration: $speed
+  animation-iteration-count: infinite
+  animation-timing-function: linear
+
+@-ms-keyframes spin
+  from
+    -ms-transform: rotate(0deg)
+  to
+    -ms-transform: rotate(360deg)
+
+
+@-moz-keyframes spin
+  from
+    -moz-transform: rotate(0deg)
+  to
+    -moz-transform: rotate(360deg)
+
+
+@-webkit-keyframes spin
+  from
+    -webkit-transform: rotate(0deg)
+  to
+    -webkit-transform: rotate(360deg)
+
+@keyframes spin
+  from
+    transform: rotate(0deg)
+  to
+    transform: rotate(360deg)

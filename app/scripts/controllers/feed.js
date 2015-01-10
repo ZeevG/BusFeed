@@ -44,7 +44,13 @@ angular.module('busFeedApp')
           geocoder.geocode({'latLng': latLng}, function(results, status) {
             console.log('Reverse Geocoder', status);
 
-            args.origin = results[0].formatted_address;
+            args.origin = _.map(
+              results[0].address_components.slice(0, 3),
+              function(component){
+                return component.short_name;
+              }
+            ).join(' ');
+
             $scope.query = args;
 
             queryHistoryService.newQuery($scope.query);
