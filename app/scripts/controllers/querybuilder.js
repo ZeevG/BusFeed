@@ -14,11 +14,11 @@ angular.module('busFeedApp')
     
     var maps;
 
-    $scope.iconClass = 'fa-refresh';
+    $scope.icon = 'working';
 
     GoogleMapApi.then(function(googleMapsAPI) {
       maps = googleMapsAPI;
-      $scope.iconClass = 'fa-location-arrow';
+      $scope.icon = 'locate';
     });
 
     $scope.go = function(){
@@ -29,11 +29,11 @@ angular.module('busFeedApp')
     };
 
     $scope.geolocate = function(){
-      if($scope.iconClass !== 'fa-location-arrow'){
+      if($scope.icon !== 'locate'){
         return;
       }
 
-      $scope.iconClass = 'fa-refresh';
+      $scope.icon = 'working';
       navigator.geolocation.getCurrentPosition(function(position){
         var latLng = new maps.LatLng(
           position.coords.latitude,
@@ -55,7 +55,7 @@ angular.module('busFeedApp')
               }
             ).join(' ');
 
-            $scope.iconClass = 'fa-location-arrow';
+            $scope.icon = 'success';
           });
         });
       });

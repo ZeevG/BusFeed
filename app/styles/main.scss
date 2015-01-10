@@ -7,6 +7,17 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "custom";
 @import "querybuilder";
 
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s;
+}
+
+.animate-show.ng-hide {
+  font-size: 0px !important;
+}
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;

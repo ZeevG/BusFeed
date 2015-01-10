@@ -27,11 +27,6 @@ body
 
 .snap-content
     background-color: #EEEEEE
-    
-    .fa-bars
-        margin: 5px
-        margin-left: 10px
-        cursor: pointer
 
 .snap-drawer
     background-color: #333333
@@ -151,7 +146,19 @@ i.fa.rotate
     @include rotating-icon
 
 i.hamburger
+    z-index: 10
+    padding-top: 4px
+    cursor: pointer
+    text-align: center
+    background-color: rgba(255, 255, 255, 0.3)
+    border-radius: 4px
+    width: 35px
+    height: 35px
     position: relative
-    top: 5px
+    top: 10px
+    left: 10px
     @media screen and (max-width: 767px)
         position: absolute
+        top: 0px
+        left: 0px
+
