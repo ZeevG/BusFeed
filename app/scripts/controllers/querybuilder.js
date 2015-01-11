@@ -14,7 +14,7 @@ angular.module('busFeedApp')
     
     var maps;
 
-    $scope.icon = 'working';
+    $scope.icon = '-';
 
     GoogleMapApi.then(function(googleMapsAPI) {
       maps = googleMapsAPI;

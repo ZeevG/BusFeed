@@ -1,0 +1,41 @@
+.snap-drawer
+    background-color: #EEEEEE
+    // border-right: 1px solid #666
+
+
+.recent-query, .new-route-button
+    cursor: pointer
+    display: block
+    color: #000000 !important
+    background-color: #FFFFFF
+    padding: 10px
+    padding-left: 20px
+    margin: 5px
+    text-decoration: none
+    transition: all 0.1s linear
+    @include shadow
+
+    .from, .to
+        font-weight: 400
+        color: #666666
+        font-size: 11px
+
+    .origin, .destination
+        margin-left: 20px
+        font-size: 12px
+        font-weight: 200
+        line-height: 1.8
+
+    &:hover, &:visited, &:link, &:active
+        text-decoration: none
+    
+    &:hover
+        box-shadow: 3px 5px #CCC
+
+    &:active
+        box-shadow: inset 3px 5px #CCC
+
+.new-route-button
+    text-align: center
+    padding: 30px
+    font-size: 1.2em

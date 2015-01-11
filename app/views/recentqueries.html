@@ -1,4 +1,8 @@
-<a ng-href="#/feed/?origin={{route.origin | encodeURIComponent}}&destination={{route.destination | encodeURIComponent}}" class="recent-query">
-  <div><div class="from">From:</div> <div class="origin">{{route.origin}}</div></div>
-  <div><div class="to">To:</div> <div class="destination">{{route.destination}}</div></div>
+<a ng-href="#/feed/?origin={{route.origin | encodeURIComponent}}&destination={{route.destination | encodeURIComponent}}" snap-close class="recent-query">
+
+    <div class="origin">{{route.origin}}</div>
+
+    <div class="to">To:</div>
+
+    <div class="destination">{{route.destination}}</div>
 </a>

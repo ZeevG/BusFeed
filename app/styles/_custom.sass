@@ -28,9 +28,6 @@ body
 .snap-content
     background-color: #EEEEEE
 
-.snap-drawer
-    background-color: #333333
-
 .header
     font-size: 22px
     font-weight: 200
@@ -73,12 +70,12 @@ body
     margin-bottom: 3px
 
     &.ng-enter
-        animation: fadeInLeftBig 1s, in 1s
+        animation: fadeInLeftBig 1s
     &.ng-leave
         overflow: hidden
-        animation: fadeOutRightBig 1s, out ease-in-out 1s
+        animation: fadeOutRightBig 1s, out-height linear 1s
 
-@-webkit-keyframes out
+@-webkit-keyframes out-height
     0%
         height: 0px
         margin-bottom: 0px
@@ -90,7 +87,7 @@ body
         padding: 15px
         margin-bottom: 3px
 
-@-webkit-keyframes out
+@-webkit-keyframes out-height
     0%
         height: auto
         padding: 15px
@@ -114,34 +111,6 @@ body
 .align-right
     text-align: right
 
-.recent-query, .new-route-button
-    cursor: pointer
-    display: block
-    color: #EEEEEE !important
-    padding: 10px
-    padding-left: 20px
-    text-decoration: none
-    border-bottom: 1px solid #999999
-
-    .from, .to
-        color: #666
-        width: 3em
-
-    .origin, .destination
-        margin-left: 40px
-
-    &:hover, &:visited, &:link, &:active
-        text-decoration: none
-    
-    &:hover, &:active
-        background-color: #DDD
-        color: #333 !important
-
-.new-route-button
-    text-align: center
-    padding: 30px
-    font-size: 1.2em
-
 i.fa.rotate
     @include rotating-icon
 
@@ -151,13 +120,13 @@ i.hamburger
     cursor: pointer
     text-align: center
     background-color: rgba(255, 255, 255, 0.3)
-    border-radius: 4px
     width: 35px
     height: 35px
     position: relative
     top: 10px
     left: 10px
     @media screen and (max-width: 767px)
+        border-bottom-right-radius: 15px
         position: absolute
         top: 0px
         left: 0px

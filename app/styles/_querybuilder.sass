@@ -28,7 +28,6 @@ input.form-element
             padding-right: 12%
 
 .location-button
-    cursor: pointer
     height: 65px
     position: relative
     top: 10px
@@ -42,20 +41,28 @@ input.form-element
         line-height: 65px
 
     &:hover
-        .fa-rosshairs
+        .fa-crosshairs
             color: #0077FF
             font-size: 26px
-            text-shadow: 1px 1px 1px #ccc
+            text-shadow: 4px 4px 2px #ccc
 
     .fa-check
         color: green
 
+    .fa-crosshairs
+        cursor: pointer
+        transition: text-shadow .2s linear, color .2s linear, font-size .2s linear
+
     .fa-refresh
         @include rotating-icon(1000ms)
 
-    .location-icons
-        vertical-align: middle
-        transition: font-size .2s linear, color .2s linear, text-shadow .2s linear
+    .animate-show.ng-hide-add.ng-hide-add-active,
+    .animate-show.ng-hide-remove.ng-hide-remove-active
+        -webkit-transition: all linear 0.5s
+        transition: all linear 0.5s
+
+    .animate-show.ng-hide
+        font-size: 0px !important
 
 .go
     background-color: #3768FB
