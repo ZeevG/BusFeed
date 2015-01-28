@@ -6,8 +6,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/assets/fonts/boots
 @import "mixins";
 @import "custom";
 @import "querybuilder";
-@import "viewanimations";
 @import "sidebar";
+@import "feed";
+@import "viewanimations";
 
 .browsehappy {
   margin: 0.2em 0;

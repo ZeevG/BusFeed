@@ -1,0 +1,124 @@
+
+.query-details
+    text-align: center
+    background-color: #3768FB
+    color: #FBFBFB
+    font-size: 22px
+    font-weight: 200
+    line-height: 1.8
+    padding-bottom: 30px
+    padding-top: 30px
+    @include shadow
+
+.icon-steps
+    line-height: 4em
+    @media screen and (max-width: $superTinyScreen)
+        line-height: 2.5em
+    @media screen and (max-width: 400px)
+        line-height: 3em
+    margin-top: 10px
+    margin-bottom: 10px
+
+    .transit-identifier
+        font-size: 1em
+    .fa
+        margin-right: 10px
+        @media screen and (max-width: $superTinyScreen)
+            font-size: 1.3em
+        @media screen and (max-width: 400px)
+            font-size: 1.6em
+
+.times h4
+    @include nice-h4(22px, 18px)
+
+.arrival-mins
+    margin-top: 10px
+    margin-bottom: 10px
+
+    & h4
+        @include nice-h4(16px, 12px)
+
+    
+    & .past
+        color: #C00000
+
+    & .future
+        color: #008443
+
+.route-card
+    @include shadow
+    padding: 15px
+    background-color: #fff
+    margin-bottom: 3px
+
+    &.ng-enter
+        animation: fadeInLeftBig 1s
+    &.ng-leave
+        overflow: hidden
+        animation: fadeOutRightBig 1s, out-height linear 1s
+
+@-webkit-keyframes out-height
+    0%
+        height: 0px
+        margin-bottom: 0px
+        padding-top: 0px
+        padding-bottom: 0px
+
+    100%
+        height: auto
+        padding: 15px
+        margin-bottom: 3px
+
+@-webkit-keyframes out-height
+    0%
+        height: auto
+        padding: 15px
+        margin-bottom: 3px
+
+    100%
+        height: 0px
+        margin-bottom: 0px
+        padding-top: 0px
+        padding-bottom: 0px
+
+.route-steps
+    // height: 75px
+    // overflow: hidden
+    & .route-step
+        padding-left: 25px
+        line-height: 2.0
+        font-weight: 300
+        color: gray
+        @media screen and (max-width: $superTinyScreen)
+            font-size: 12px
+
+    ol
+        padding-left: 0px
+        counter-reset: foo
+        display: table
+
+    ol > li
+        counter-increment: foo
+        display: table-row
+
+    ol > li::before
+        content: counter(foo) "."
+        display: table-cell /* aha! */
+        text-align: left
+        padding-right: 5px
+
+.more-details
+    padding: 5px
+    color: #0090FF
+    text-align: center
+    cursor: pointer
+
+    a
+        font-size: 12px
+        font-weight: 400
+        text-align: center
+        line-height: 1
+
+
+.align-right
+    text-align: right

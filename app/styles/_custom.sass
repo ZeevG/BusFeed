@@ -28,89 +28,6 @@ body
 .snap-content
     background-color: #EEEEEE
 
-.header
-    font-size: 22px
-    font-weight: 200
-    line-height: 1.8
-
-.query-details
-    text-align: center
-    background-color: #3768FB
-    color: #FBFBFB
-    font-size: 22px
-    font-weight: 200
-    line-height: 1.8
-    @include shadow
-
-.icon-steps
-    padding: 10px
-
-    .fa
-        margin-right: 10px
-        @media screen and (max-width: $superTinyScreen)
-            font-size: 1.4em
-
-.times h4
-    @include nice-h4()
-
-.arrival-mins h4
-    @include nice-h4(16px, 14px)
-    height: 0px
-    
-    & .past
-        color: #C00000
-
-    & .future
-        color: #008443
-
-.route-card
-    @include shadow
-    padding: 15px
-    background-color: #fff
-    margin-bottom: 3px
-
-    &.ng-enter
-        animation: fadeInLeftBig 1s
-    &.ng-leave
-        overflow: hidden
-        animation: fadeOutRightBig 1s, out-height linear 1s
-
-@-webkit-keyframes out-height
-    0%
-        height: 0px
-        margin-bottom: 0px
-        padding-top: 0px
-        padding-bottom: 0px
-
-    100%
-        height: auto
-        padding: 15px
-        margin-bottom: 3px
-
-@-webkit-keyframes out-height
-    0%
-        height: auto
-        padding: 15px
-        margin-bottom: 3px
-
-    100%
-        height: 0px
-        margin-bottom: 0px
-        padding-top: 0px
-        padding-bottom: 0px
-
-.route-steps
-    & .route-step
-        padding-left: 25px
-        line-height: 2.0
-        font-weight: 300
-        color: gray
-        @media screen and (max-width: $superTinyScreen)
-            font-size: 12px
-
-.align-right
-    text-align: right
-
 i.fa.rotate
     @include rotating-icon
 
@@ -119,14 +36,14 @@ i.hamburger
     padding-top: 4px
     cursor: pointer
     text-align: center
-    background-color: rgba(255, 255, 255, 0.3)
     width: 35px
     height: 35px
     position: relative
     top: 10px
     left: 10px
+
     @media screen and (max-width: 767px)
-        border-bottom-right-radius: 15px
+        background-color: #EEEEEE
         position: absolute
         top: 0px
         left: 0px

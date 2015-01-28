@@ -38,9 +38,32 @@
           </h4>
         </div>
       </div>
-      <div class="row route-steps" ng-repeat="step in leg.steps">
-        <div class="route-step col-sm-10 col-sm-offset-1">{{$index+1}}. {{step.instructions}}</div>
+      <div class="row">
+        <div class="route-steps col-sm-10 col-xs-12 col-sm-offset-1">
+          <ol>
+            <li class="route-step" ng-repeat="step in leg.steps | limitTo:3">{{step.instructions}}</li>
+          </ol>
+        </div>
       </div>
+      <div class="row">
+        <div ng-show="route.detailsVisible" class="map col-sm-11 col-sm-offset-1">
+<!--           <ui-gmap-google-map center='route.bounds.getCenter()'
+              zoom='10'
+              draggable='false'
+          >
+
+              <!-- other ui-gmap-directives here -->
+
+          <!--</ui-gmap-google-map> -->
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-sm-4 col-xs-4 col-sm-offset-4 col-xs-offset-4">
+          <div class="more-details">
+            <a ng-click="displayDetails($index)">More Details</a>
+          </div>
+        </div>
+      </div> -->
     </div>
   </div>
 </div>

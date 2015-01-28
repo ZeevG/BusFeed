@@ -21,7 +21,10 @@ angular.module('busFeedApp.filters', [])
 
         return '<i class="'+iconClassName[step.travel_mode]+'">&nbsp;'+route+'</i>';
       });
-      return icons.join(iconSeperator);
+
+      return '<span class="steps-container">'+
+              icons.join(iconSeperator)+
+              '</span>';
     };
   })
   .filter('encodeURIComponent', function() {
