@@ -1,0 +1,22 @@
+.angular-google-map-container
+    height: 400px
+
+.map
+    max-height: 400px
+    overflow: hidden
+    transition: max-height 500ms ease-in-out
+    border-radius: 5px
+
+    &.ng-animate.ng-enter
+        height: auto
+        max-height: 0
+
+    &.ng-animate.ng-enter-active
+        max-height: 400px
+
+    &.ng-animate.ng-leave
+        max-height: 400px
+
+    &.ng-animate.ng-leave-active
+        height: auto
+        max-height: 0
