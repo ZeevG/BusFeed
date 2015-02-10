@@ -40,31 +40,33 @@
       </div>
       <div class="row">
         <div class="route-steps col-sm-10 col-xs-12 col-sm-offset-1">
-          <ol>
-            <li class="route-step" ng-repeat="step in leg.steps | limitTo:3">{{step.instructions}}</li>
+          <ol ng-class="{expand: route.detailsVisible}">
+            <li class="route-step" ng-repeat="step in leg.steps">
+              {{step.instructions}}
+              <p ng-if="route.detailsVisible" class="route-details">{{step.distance.text}} / {{step.duration.text}}</p>
+            </li>
+
           </ol>
         </div>
       </div>
       <div class="row">
-        <div ng-if="route.detailsVisible" class="map col-sm-12">
+        <div ng-if="route.detailsVisible" class="map route-details col-sm-12">
           <ui-gmap-google-map
-              data-snap-ignore="true"
+              data-snap-ignore="true" 
               center='route.center'
               zoom='10'
               draggable='false'
               pan="true"
               options="{scrollwheel: false}"
           >
-            <ui-gmap-markers
-             models="route.markers"
-             coords="'self'"
-             fit="true"
-            >
-            </ui-gmap-markers>
             <ui-gmap-polyline path='route.overview_path'
               stroke="{color: '#6060FB', weight: 6}"
               static="true"
               fit="true"
+            >
+            <ui-gmap-polyline path='route.overview_path'
+              stroke="{color: '#7EC0EE', weight: 8}"
+              static="true"
             >
             </ui-gmap-polyline>
           </ui-gmap-google-map>

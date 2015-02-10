@@ -17,6 +17,12 @@ angular.module('busFeedApp')
 
     $scope.toggleDetails = function(index){
       $scope.routes[index].detailsVisible = !$scope.routes[index].detailsVisible;
+      
+      if($scope.routes[index].detailsVisible){
+        $scope.routes[index].NumSteps = 12000;
+      }else{
+        $scope.routes[index].NumSteps = 3;
+      }
       console.log(index);
     };
 
@@ -45,28 +51,15 @@ angular.module('busFeedApp')
         console.log(DirectionsStatus);
         for(var ii=0;ii<directions.routes.length;ii++){
           var bounds = directions.routes[ii].bounds;
-          var leg = directions.routes[ii].legs[0]; // Not using waypoints so always only one leg
           
           directions.routes[ii].md5 = MD5.hex(angular.toJson(directions.routes[ii]));
           directions.routes[ii].detailsVisible = false;
+          directions.routes[ii].NumSteps = 3;
 
           directions.routes[ii].center = {
             'latitude': bounds.getCenter().lat(),
             'longitude': bounds.getCenter().lng()
           };
-          directions.routes[ii]
-          directions.routes[ii].markers = [
-            {
-              'id': (ii*10)+1,
-              'latitude': leg.start_location.lat(),
-              'longitude': leg.start_location.lng()
-            },
-            {
-              'id': (ii*10)+2,
-              'latitude': leg.end_location.lat(),
-              'longitude': leg.end_location.lng()
-            }
-          ];
         }
 
         $scope.$apply(function(){

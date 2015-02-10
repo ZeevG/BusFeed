@@ -95,7 +95,11 @@
     ol
         padding-left: 0px
         counter-reset: foo
-        display: table
+        // display: table
+        max-height: 75px
+        overflow: hidden
+        &.expand
+            max-height: 10000px !important
 
     ol > li
         counter-increment: foo
