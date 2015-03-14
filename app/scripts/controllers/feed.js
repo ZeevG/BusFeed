@@ -14,6 +14,7 @@ angular.module('busFeedApp')
     $controller('OverlayCtrl', {$scope:$scope});
 
     $scope.routes = [];
+    $scope.routeStatus = 'OK'
 
     $scope.toggleDetails = function(index){
       $scope.routes[index].detailsVisible = !$scope.routes[index].detailsVisible;
@@ -48,7 +49,6 @@ angular.module('busFeedApp')
         // Query returned something - Add it to the history service
         queryHistoryService.newQuery($scope.query);
 
-        console.log(DirectionsStatus);
         for(var ii=0;ii<directions.routes.length;ii++){
           var bounds = directions.routes[ii].bounds;
           
@@ -61,9 +61,9 @@ angular.module('busFeedApp')
             'longitude': bounds.getCenter().lng()
           };
         }
-
         $scope.$apply(function(){
           $scope.routes = directions.routes;
+          $scope.routeStatus = DirectionsStatus
         });
       });
     }

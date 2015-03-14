@@ -29,20 +29,20 @@
 
     <snap-drawer>
       <div ng-controller="RecentQueriesCtrl">
-        <a ng-href="#/" class="new-route-button">
+        <a snap-close ng-href="#/" class="new-route-button">
           <i class="fa fa-plus"></i>
           Create A New Route
         </a>
         <div ng-include="'views/recentqueries.html'" ng-repeat="route in queryHistory.queries"></div>
         <a href="http://github.com/ZeevG/BusFeed" class="new-route-button">
           <i class="fa fa-github fa-2x"></i>
-          <p>Fork Me</p>
+          <p>GitHub Page</p>
         </a>
       </div>
     </snap-drawer>
     <snap-content>
       <i class="fa fa-bars fa-2x hamburger" snap-toggle></i>
-      <div ng-view class="slide container"></div>
+      <div ng-view data-snap-ignore="true" class="slide container"></div>
     </snap-content>
 
 
