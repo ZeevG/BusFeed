@@ -23,7 +23,7 @@
         <h6 style="font-weight: 200;">Google Says: {{routeStatus}}</h6>
         <br>
         <p>Data is generated using the Google Transit API.</p>
-        <p>In order for BusFeed to work, Google needs to support public transport directions within the search area. You can check this by trying the same query on the <a href="maps.google.com/transit">Google Tranit App.</a></p>
+        <p>In order for BusFeed to work, Google needs to support public transport directions within the search area. You can check this by trying the same query on the <a href="https://maps.google.com/transit">Google Tranit App.</a></p>
         <p>If you still think there is something wrong with BusFeed, submit an issue on the <a href="https://github.com/ZeevG/BusFeed">projects GitHub page.</a></p>
       </div>
     </div>
@@ -57,7 +57,10 @@
         <div class="route-steps col-sm-10 col-xs-12 col-sm-offset-1">
           <ol ng-class="{expand: route.detailsVisible}">
             <li class="route-step" ng-repeat="step in leg.steps">
-              {{step.instructions}}
+              {{step.instructions}} &nbsp; <a ng-if="route.detailsVisible && step.transit.line.url" 
+                                              class="external-ref" target="_blank" href="{{step.transit.line.url}}">
+                                              <i class="fa fa-external-link"></i>
+                                            </a>
               <p ng-if="route.detailsVisible" class="route-details">{{step.distance.text}} / {{step.duration.text}}</p>
             </li>
 
